@@ -16,7 +16,13 @@ fn main() -> anyhow::Result<()> {
     } else {
         SpeedTest::new(&args[1])
     }?;
-    let stats = speedtest.speedtest()?;
-    println!("{} {} {}", stats.min(), stats.max(), stats.avg());
+    let (stats, recover) = speedtest.speedtest()?;
+    println!(
+        "{} {} {} {}",
+        stats.min(),
+        stats.max(),
+        stats.avg(),
+        recover
+    );
     Ok(())
 }

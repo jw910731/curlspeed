@@ -91,14 +91,15 @@ impl SpeedTest {
         self.handle.timeout(timeout)
     }
 
-    pub fn speedtest(&self) -> Result<&Statistic, curl::Error> {
+    pub fn speedtest(&self) -> Result<(&Statistic, bool), curl::Error> {
         self.handle
             .perform()
+            .map(|_| false)
             .or_else(|e| {
                 (e.is_aborted_by_callback() || e.is_operation_timedout())
-                    .then_some(())
+                    .then_some(true)
                     .ok_or(e)
             })
-            .map(|_| self.handle.get_ref())
+            .map(|recover| (self.handle.get_ref(), recover))
     }
 }
