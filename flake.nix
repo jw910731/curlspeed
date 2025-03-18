@@ -43,11 +43,12 @@
             modules = [
               {
                 # https://devenv.sh/reference/options/
-                packages = [ ];
+                packages = [ pkgs.curl ];
 
                 languages.rust = {
                   enable = true;
                   channel = "stable";
+                  targets = [ "aarch64-unknown-linux-gnu" ];
                 };
               }
             ];

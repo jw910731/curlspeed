@@ -4,3 +4,7 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+anyhow = "1.0.97"
+curl = "0.4.47"
+serde = { version = "1.0.219", features = ["derive", "serde_derive"] }
+size = { version = "0.5.0", features = ["serde"] }
