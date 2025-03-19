@@ -1,6 +1,48 @@
 # curlspeed
 Use libcurl to test download speed of a specific URL
 
+# Usage
+Basic usage is as follow:
+
+```bash
+./curlspeed <Connection target> [<Min Speed> <Max Speed>]
+```
+
+For example:
+
+```bash
+./curlspeed https://github.com/ppy/osu/releases/download/2025.316.0/osu.app.Apple.Silicon.zip'
+```
+
+## Speed Limit
+You can set min speed to early terminates the speed test if download speed per second is lower then this value for over 10 seconds.
+
+The max speed need to be set as well, which force the download speed to be less then this value.
+
+```bash
+./curlspeed https://github.com/ppy/osu/releases/download/2025.316.0/osu.app.Apple.Silicon.zip' 100KB 33MB
+```
+
+## Timeout
+The program has a hard-coded 30 seconds timeout. 
+
+If the download do not complete within 30 seconds, the test will force to end.
+
+# Output
+The output of the program is like:
+```
+<min download speed> <max download speed> <average download speed> <force termination> 
+```
+
+Download speed ar in unit of [G|M|K]iB (Byte) per second.
+
+Note that min download speed refers to the minimum non-zero download speed during the test.
+
+Force termination refers whether the download file really successfully downloaded or not. 
+
+`true` means the test early terminate, this may indicate that the downlaod speed is too slow for 10 seconds, or the test timeout is reached.
+
+
 # Build
 > [!IMPORTANT]
 > The project depends on native `libcurl`, install it before project build or development
