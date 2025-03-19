@@ -52,7 +52,7 @@ Force termination refers whether the download file really successfully downloade
 
 Use `cargo build` to build native executable
 
-## Cross compile to linux
+## Cross Compile to Linux
 You can leverage the nix flake in the project to cross compile to linux target.
 
 The corresponding output is `#curlspeed.<target>-linux`, which target can be `aarch64` or `x86_64`.
